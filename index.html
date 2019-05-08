@@ -7,15 +7,46 @@
     <title>Space Music</title>
 </head>
 <body>
-    <audio controls loop>
-        <source src=".\music\miguel-johnson-attack-on-the-colonies.mp3" type="audio/mpeg">
-        <source src=".\music\darren-curtis-danger-around-the-corner.mp3" type="audio/mpeg">
+    <audio autoplay controls id="myAudio" src=".\music\miguel-johnson-attack-on-the-colonies.mp3">
+        <!-- <source src=".\music\miguel-johnson-attack-on-the-colonies.mp3" type="audio/mpeg"> -->
+        <!-- <source src=".\music\darren-curtis-danger-around-the-corner.mp3" type="audio/mpeg">
         <source src=".\music\dox-unknown-energy.mp3" type="audio/mpeg">
         <source src=".\music\savfk-nebula.mp3" type="audio/mpeg">
-        <source src=".\music\serge-narcissoff-planet-hell.mp3" type="audio/mpeg">
+        <source src=".\music\serge-narcissoff-planet-hell.mp3" type="audio/mpeg"> -->
         <!-- <source src="horse.mp3" type="audio/mpeg"> -->
         Your browser does not support the audio element.
     </audio>
+
+    <button class="next">Next</button>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var array = [
+        "./\music/\miguel-johnson-attack-on-the-colonies.mp3",
+        "./\music/\darren-curtis-danger-around-the-corner.mp3",
+        "./\music/\dox-unknown-energy.mp3",
+        "./\music/\savfk-nebula.mp3",
+        "./\music/\serge-narcissoff-planet-hell.mp3"
+        ];
+
+        var current = 0;
+        $('#myAudio').on('playing', function() {
+
+        })
+        function changeSong() {
+            current++;
+            $('#myAudio').attr('src', array[current])
+            $('#myAudio')[0].play();
+            console.log('Hey')
+        }
+        $('#myAudio').on('ended', function() {
+            changeSong();
+        })
+
+        $('.next').on('click', function() {
+            changeSong();
+        })
+
+    </script>
 </body>
 </html>
