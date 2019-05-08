@@ -17,7 +17,11 @@
         Your browser does not support the audio element.
     </audio>
 
-    <button class="next">Next</button>
+    <div>
+        <button class="previous">Previous</button>
+        <button class="next">Next</button>
+    </div>
+    
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -33,18 +37,26 @@
         $('#myAudio').on('playing', function() {
 
         })
-        function changeSong() {
-            current++;
+        function changeSong(num) {
+            current += num;
+            if(current > array.length - 1) {
+                current = 0;
+            } else if(current < 0) {
+                current = array.length - 1;
+            }
             $('#myAudio').attr('src', array[current])
             $('#myAudio')[0].play();
-            console.log('Hey')
+            console.log('Direction: ', num)
         }
         $('#myAudio').on('ended', function() {
-            changeSong();
+            changeSong(1);
         })
 
         $('.next').on('click', function() {
-            changeSong();
+            changeSong(1);
+        })
+        $('.previous').on('click', function() {
+            changeSong(-1);
         })
 
     </script>
